@@ -1,1 +1,134 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Script Generator | Faceless AI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09090f;color:#f5f3ff;font-family:Arial,sans-serif}
+header{padding:22px 6%;border-bottom:1px solid #292536;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:800;letter-spacing:1px}
+.logo span{color:#a78bfa}
+header a{color:#c4b5fd;text-decoration:none}
+main{max-width:950px;margin:55px auto;padding:0 22px}
+h1{font-size:34px;margin-bottom:12px}
+.subtitle{color:#a5a0b5;line-height:1.6;margin-bottom:35px}
+.panel{background:#13131f;border:1px solid #29273a;border-radius:15px;padding:25px}
+label{display:block;margin:20px 0 9px;font-size:14px;color:#ddd6fe}
+input,textarea,select{width:100%;padding:14px;background:#0c0c15;border:1px solid #343047;border-radius:8px;color:white;font-size:14px;outline:none}
+input:focus,textarea:focus,select:focus{border-color:#a78bfa}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+.options{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+button{background:#a78bfa;color:#100c1c;padding:14px 22px;border:0;border-radius:8px;font-weight:bold;font-size:14px;margin-top:25px}
+button:hover{background:#c4b5fd}
+.note{margin-top:20px;padding:15px;background:#201a30;border-radius:8px;color:#c4b5fd;font-size:13px;line-height:1.6}
+.output{margin-top:25px;display:none}
+.output h2{font-size:20px;margin-bottom:12px}
+#result{white-space:pre-wrap;line-height:1.7;color:#ddd6fe}
+@media(max-width:600px){.options{grid-template-columns:1fr}h1{font-size:27px}main{margin:35px auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">FACELESS <span>AI</span></div>
+  <a href="app.html">← Back to Dashboard</a>
+</header>
+
+<main>
+  <h1>AI Script Generator</h1>
+  <p class="subtitle">
+    Turn your video ideas into engaging YouTube scripts.
+    Choose your preferences and prepare your next video.
+  </p>
+
+  <section class="panel">
+    <label for="topic">Video Topic</label>
+    <textarea id="topic" placeholder="Example: 7 habits that make you more productive"></textarea>
+
+    <div class="options">
+      <div>
+        <label for="platform">Platform</label>
+        <select id="platform">
+          <option>YouTube</option>
+          <option>YouTube Shorts</option>
+          <option>Instagram Reels</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="language">Language</label>
+        <select id="language">
+          <option>English</option>
+          <option>Hindi</option>
+          <option>Hinglish</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="duration">Video Duration</label>
+        <select id="duration">
+          <option>1 minute</option>
+          <option>3 minutes</option>
+          <option selected>5 minutes</option>
+          <option>8 minutes</option>
+          <option>10 minutes</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="style">Script Style</label>
+        <select id="style">
+          <option>Engaging</option>
+          <option>Documentary</option>
+          <option>Mysterious</option>
+          <option>Educational</option>
+          <option>Motivational</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="audience">Target Audience</label>
+    <input id="audience" type="text" placeholder="Example: Teenagers and young adults">
+
+    <div class="note">
+      Your script settings are ready. The secure AI generation connection will be added next.
+    </div>
+
+    <button type="button" id="generate">Prepare Script Request</button>
+
+    <div class="output" id="output">
+      <h2>Your Script Settings</h2>
+      <p id="result"></p>
+    </div>
+  </section>
+</main>
+
+<script>
+document.getElementById("generate").addEventListener("click", function(){
+  const topic = document.getElementById("topic").value.trim();
+
+  if(!topic){
+    alert("Please enter your video topic first.");
+    return;
+  }
+
+  const settings = [
+    "Topic: " + topic,
+    "Platform: " + document.getElementById("platform").value,
+    "Language: " + document.getElementById("language").value,
+    "Duration: " + document.getElementById("duration").value,
+    "Style: " + document.getElementById("style").value,
+    "Audience: " + (document.getElementById("audience").value || "General audience")
+  ];
+
+  document.getElementById("result").textContent = settings.join("\n");
+  document.getElementById("output").style.display = "block";
+});
+</script>
+
+</body>
+</html>
+
