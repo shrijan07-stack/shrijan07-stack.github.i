@@ -2,341 +2,420 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Faceless AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faceless AI | Dashboard</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #09090f;
-      color: #f5f3ff;
-      min-height: 100vh;
-    }
+body {
+  background: #09090f;
+  color: #f5f3ff;
+  font-family: Arial, sans-serif;
+}
 
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
+button {
+  cursor: pointer;
+  border: none;
+}
 
-    .sidebar {
-      width: 250px;
-      background: #10101a;
-      border-right: 1px solid #282437;
-      padding: 28px 18px;
-      display: flex;
-      flex-direction: column;
-    }
+.login-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  text-align: center;
+}
 
-    .logo {
-      font-size: 23px;
-      font-weight: 800;
-      margin-bottom: 45px;
-      padding-left: 10px;
-    }
+.logo {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
 
-    .logo span {
-      color: #a78bfa;
-    }
+.logo span {
+  color: #a78bfa;
+}
 
-    .nav-label {
-      color: #777287;
-      font-size: 11px;
-      letter-spacing: 2px;
-      margin: 15px 10px;
-    }
+.login-screen p {
+  color: #a5a0b5;
+  margin: 15px 0 28px;
+}
 
-    .nav-link {
-      display: block;
-      padding: 13px;
-      margin-bottom: 7px;
-      border-radius: 9px;
-      color: #aaa7bb;
-      text-decoration: none;
-      font-size: 14px;
-      transition: 0.2s;
-    }
+.google-btn {
+  background: #a78bfa;
+  color: #100c1c;
+  padding: 14px 25px;
+  border-radius: 9px;
+  font-weight: bold;
+  font-size: 15px;
+}
 
-    .nav-link:hover,
-    .nav-link.active {
-      background: #251c3a;
-      color: #c4aaff;
-    }
+.google-btn:hover {
+  background: #c4b5fd;
+}
 
-    .sidebar-bottom {
-      margin-top: auto;
-      padding-top: 30px;
-    }
+#loginMessage {
+  color: #fca5a5;
+  margin-top: 18px;
+  max-width: 450px;
+  font-size: 13px;
+}
 
-    .sidebar-bottom a {
-      display: block;
-      color: #9994a9;
-      text-decoration: none;
-      font-size: 13px;
-      padding: 10px;
-    }
+.dashboard {
+  display: none;
+  min-height: 100vh;
+}
 
-    .main {
-      flex: 1;
-      padding: 35px 5%;
-      min-width: 0;
-    }
+.sidebar {
+  width: 245px;
+  background: #10101a;
+  border-right: 1px solid #242333;
+  padding: 30px 20px;
+  flex-shrink: 0;
+}
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 55px;
-      gap: 15px;
-    }
+.sidebar .logo {
+  font-size: 22px;
+  margin-bottom: 45px;
+}
 
-    .topbar h2 {
-      font-size: 23px;
-    }
+.sidebar a {
+  display: block;
+  color: #aaa5ba;
+  text-decoration: none;
+  padding: 13px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
 
-    .profile {
-      border: 1px solid #302b45;
-      background: #171522;
-      padding: 10px 16px;
-      border-radius: 25px;
-      color: #c5b8e9;
-      font-size: 13px;
-    }
+.sidebar a:hover,
+.sidebar a.active {
+  background: #241d38;
+  color: #c4b5fd;
+}
 
-    .welcome {
-      margin-bottom: 40px;
-    }
+.main {
+  flex: 1;
+  padding: 35px;
+  min-width: 0;
+}
 
-    .welcome h1 {
-      font-size: clamp(28px, 4vw, 40px);
-      margin-bottom: 12px;
-    }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 45px;
+  flex-wrap: wrap;
+}
 
-    .welcome h1 span {
-      color: #a78bfa;
-    }
+.user-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #c4b5fd;
+  font-size: 13px;
+}
 
-    .welcome p {
-      color: #aaa7bb;
-      line-height: 1.7;
-    }
+.user-area button {
+  background: #242033;
+  color: white;
+  padding: 9px 13px;
+  border-radius: 7px;
+}
 
-    .section-title {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
+.welcome h1 {
+  font-size: clamp(27px, 4vw, 38px);
+  margin-bottom: 12px;
+}
 
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
+.welcome p {
+  color: #a5a0b5;
+  line-height: 1.6;
+}
 
-    .tool-card {
-      background: linear-gradient(145deg, #191827, #11111a);
-      border: 1px solid #302b45;
-      border-radius: 15px;
-      padding: 28px;
-      transition: 0.3s;
-    }
+.section-title {
+  margin: 38px 0 20px;
+  font-size: 20px;
+}
 
-    .tool-card:hover {
-      transform: translateY(-5px);
-      border-color: #9270ff;
-    }
+.tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
 
-    .tool-icon {
-      font-size: 30px;
-      margin-bottom: 18px;
-    }
+.tool-card {
+  background: #13131f;
+  border: 1px solid #29273a;
+  border-radius: 13px;
+  padding: 25px;
+  min-height: 185px;
+  transition: .2s;
+}
 
-    .tool-card h3 {
-      font-size: 19px;
-      margin-bottom: 10px;
-    }
+.tool-card:hover {
+  border-color: #8b5cf6;
+  transform: translateY(-3px);
+}
 
-    .tool-card p {
-      color: #aaa7bb;
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 22px;
-    }
+.tool-icon {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
 
-    .status {
-      display: inline-block;
-      background: #251c3a;
-      border: 1px solid #49376d;
-      color: #c4aaff;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: bold;
-    }
+.tool-card h3 {
+  margin-bottom: 10px;
+}
 
-    .notice {
-      margin-top: 35px;
-      padding: 20px;
-      background: #151322;
-      border: 1px solid #302b45;
-      border-radius: 12px;
-      color: #aaa7bb;
-      font-size: 13px;
-      line-height: 1.7;
-    }
+.tool-card p {
+  color: #a5a0b5;
+  font-size: 13px;
+  line-height: 1.6;
+}
 
-    @media(max-width: 750px) {
-      .layout {
-        flex-direction: column;
-      }
+.status {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 6px 10px;
+  background: #29213c;
+  color: #c4b5fd;
+  border-radius: 20px;
+  font-size: 11px;
+}
 
-      .sidebar {
-        width: 100%;
-        padding: 18px;
-      }
+.notice {
+  margin-top: 35px;
+  padding: 20px;
+  background: #151323;
+  border: 1px solid #302747;
+  border-radius: 10px;
+  color: #b8b1c9;
+  font-size: 13px;
+  line-height: 1.7;
+}
 
-      .logo {
-        margin-bottom: 15px;
-      }
+.footer {
+  margin-top: 35px;
+  color: #777287;
+  font-size: 12px;
+}
 
-      .nav-label,
-      .sidebar-bottom {
-        display: none;
-      }
+.footer a {
+  color: #a78bfa;
+  text-decoration: none;
+  margin-right: 15px;
+}
 
-      .sidebar nav {
-        display: flex;
-        overflow-x: auto;
-        gap: 5px;
-      }
+@media(max-width: 700px) {
+  .dashboard {
+    flex-direction: column;
+  }
 
-      .nav-link {
-        white-space: nowrap;
-        margin: 0;
-      }
+  .sidebar {
+    width: 100%;
+    padding: 18px;
+  }
 
-      .main {
-        padding: 25px 18px;
-      }
+  .sidebar .logo {
+    margin-bottom: 15px;
+  }
 
-      .topbar {
-        margin-bottom: 35px;
-      }
-    }
+  .sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
 
-    @media(max-width: 480px) {
-      .tools-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  .sidebar a {
+    margin: 0;
+    padding: 9px;
+    font-size: 12px;
+  }
+
+  .main {
+    padding: 23px 17px;
+  }
+
+  .topbar {
+    margin-bottom: 30px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="layout">
+<!-- GOOGLE LOGIN SCREEN -->
+<section class="login-screen" id="loginScreen">
+  <div class="logo">FACELESS <span>AI</span></div>
+  <p>Create videos without showing your face.</p>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+  <button class="google-btn" id="googleLogin">
+    Continue with Google
+  </button>
 
-      <div class="logo">FACELESS <span>AI</span></div>
+  <div id="loginMessage"></div>
+</section>
 
-      <div class="nav-label">WORKSPACE</div>
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
 
-      <nav>
-        <a href="app.html" class="nav-link active">⌂ Dashboard</a>
-        <a href="#script" class="nav-link">✍ Script Generator</a>
-        <a href="#voiceover" class="nav-link">♫ Voiceover</a>
-        <a href="#visuals" class="nav-link">▧ Visual Generator</a>
-        <a href="#video" class="nav-link">▶ Video Creator</a>
-      </nav>
+  <aside class="sidebar">
+    <div class="logo">FACELESS <span>AI</span></div>
 
-      <div class="sidebar-bottom">
-        <a href="index.html">← Back to Website</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms & Conditions</a>
+    <nav>
+      <a href="#dashboard-home" class="active">Dashboard</a>
+      <a href="#script">AI Script</a>
+      <a href="#voiceover">AI Voiceover</a>
+      <a href="#visuals">Visual Generator</a>
+      <a href="#video">Video Creator</a>
+      <a href="index.html">Main Website</a>
+    </nav>
+  </aside>
+
+  <main class="main" id="dashboard-home">
+
+    <div class="topbar">
+      <h2>Your Workspace</h2>
+      <div class="user-area">
+        <span id="userName">User</span>
+        <button id="logoutButton">Sign Out</button>
+      </div>
+    </div>
+
+    <section class="welcome">
+      <h1>Create Something Amazing.</h1>
+      <p>Your AI-powered faceless video creation workspace.</p>
+    </section>
+
+    <h2 class="section-title">Your AI Tools</h2>
+
+    <section class="tools">
+
+      <div class="tool-card" id="script">
+        <div class="tool-icon">✍️</div>
+        <h3>AI Script Generator</h3>
+        <p>Generate engaging video scripts with AI.</p>
+        <span class="status">Coming Soon</span>
       </div>
 
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <main class="main">
-
-      <div class="topbar">
-        <h2>Dashboard</h2>
-        <div class="profile">Guest Account</div>
+      <div class="tool-card" id="voiceover">
+        <div class="tool-icon">🎙️</div>
+        <h3>AI Voiceover</h3>
+        <p>Turn your scripts into natural-sounding voiceovers.</p>
+        <span class="status">Coming Soon</span>
       </div>
 
-      <section class="welcome">
-        <h1>Welcome to <span>Faceless AI</span></h1>
-        <p>
-          Your creative workspace for planning and creating
-          faceless YouTube videos.
-        </p>
-      </section>
-
-      <h2 class="section-title">Your AI Tools</h2>
-
-      <div class="tools-grid">
-
-        <div class="tool-card" id="script">
-          <div class="tool-icon">✍️</div>
-          <h3>AI Script Generator</h3>
-          <p>
-            Create engaging YouTube scripts with AI assistance.
-            Choose topics, styles and video lengths.
-          </p>
-          <span class="status">Coming Soon</span>
-        </div>
-
-        <div class="tool-card" id="voiceover">
-          <div class="tool-icon">🎙️</div>
-          <h3>AI Voiceover</h3>
-          <p>
-            Turn your written scripts into natural-sounding
-            voice narration.
-          </p>
-          <span class="status">Coming Soon</span>
-        </div>
-
-        <div class="tool-card" id="visuals">
-          <div class="tool-icon">🖼️</div>
-          <h3>Visual Generator</h3>
-          <p>
-            Create visuals and find suitable images for your
-            faceless videos.
-          </p>
-          <span class="status">Coming Soon</span>
-        </div>
-
-        <div class="tool-card" id="video">
-          <div class="tool-icon">🎬</div>
-          <h3>Video Creator</h3>
-          <p>
-            Combine scripts, voiceovers and visuals into
-            a finished video.
-          </p>
-          <span class="status">Coming Soon</span>
-        </div>
-
+      <div class="tool-card" id="visuals">
+        <div class="tool-icon">🖼️</div>
+        <h3>Visual Generator</h3>
+        <p>Find and generate visuals for your videos.</p>
+        <span class="status">Coming Soon</span>
       </div>
 
-      <div class="notice">
-        <strong>Development Notice</strong><br>
-        Faceless AI is currently under development. The tools
-        shown above are planned features and are not yet functional.
-        Google Sign-In and user accounts will be added separately.
-        This dashboard currently operates in guest preview mode.
+      <div class="tool-card" id="video">
+        <div class="tool-icon">🎬</div>
+        <h3>Video Creator</h3>
+        <p>Combine your script, voiceover and visuals.</p>
+        <span class="status">Coming Soon</span>
       </div>
 
-    </main>
+    </section>
 
-  </div>
+    <div class="notice">
+      <strong>Development Notice</strong><br>
+      Your Faceless AI workspace is currently under development.
+      The tools shown here are planned features and are not functional yet.
+    </div>
+
+    <div class="footer">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms</a>
+    </div>
+
+  </main>
+</div>
+
+<!-- FIREBASE GOOGLE AUTHENTICATION -->
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  onAuthStateChanged,
+  signOut
+}
+from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB-gcPHGNQ8clv0ddJ5jgO97Ylove559H0",
+  authDomain: "faceless-ai-1560b.firebaseapp.com",
+  projectId: "faceless-ai-1560b",
+  storageBucket: "faceless-ai-1560b.firebasestorage.app",
+  messagingSenderId: "627267984662",
+  appId: "1:627267984662:web:3002252bd3b65338130437"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+const loginScreen = document.getElementById("loginScreen");
+const dashboard = document.getElementById("dashboard");
+const loginMessage = document.getElementById("loginMessage");
+
+document.getElementById("googleLogin").addEventListener("click", async () => {
+  loginMessage.textContent = "Connecting to Google...";
+
+  try {
+    await signInWithPopup(auth, provider);
+    loginMessage.textContent = "";
+  } catch (error) {
+    console.error(error);
+    loginMessage.textContent =
+      "Login failed: " + error.message;
+  }
+});
+
+document.getElementById("logoutButton").addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error(error);
+    alert("Sign out failed. Please try again.");
+  }
+});
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    loginScreen.style.display = "none";
+    dashboard.style.display = "flex";
+
+    document.getElementById("userName").textContent =
+      user.displayName || user.email || "User";
+
+  } else {
+    dashboard.style.display = "none";
+    loginScreen.style.display = "flex";
+  }
+});
+
+</script>
 
 </body>
 </html>
