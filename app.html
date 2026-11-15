@@ -1,1 +1,343 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Faceless AI</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #09090f;
+      color: #f5f3ff;
+      min-height: 100vh;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: #10101a;
+      border-right: 1px solid #282437;
+      padding: 28px 18px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      margin-bottom: 45px;
+      padding-left: 10px;
+    }
+
+    .logo span {
+      color: #a78bfa;
+    }
+
+    .nav-label {
+      color: #777287;
+      font-size: 11px;
+      letter-spacing: 2px;
+      margin: 15px 10px;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 13px;
+      margin-bottom: 7px;
+      border-radius: 9px;
+      color: #aaa7bb;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: #251c3a;
+      color: #c4aaff;
+    }
+
+    .sidebar-bottom {
+      margin-top: auto;
+      padding-top: 30px;
+    }
+
+    .sidebar-bottom a {
+      display: block;
+      color: #9994a9;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 10px;
+    }
+
+    .main {
+      flex: 1;
+      padding: 35px 5%;
+      min-width: 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 55px;
+      gap: 15px;
+    }
+
+    .topbar h2 {
+      font-size: 23px;
+    }
+
+    .profile {
+      border: 1px solid #302b45;
+      background: #171522;
+      padding: 10px 16px;
+      border-radius: 25px;
+      color: #c5b8e9;
+      font-size: 13px;
+    }
+
+    .welcome {
+      margin-bottom: 40px;
+    }
+
+    .welcome h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      margin-bottom: 12px;
+    }
+
+    .welcome h1 span {
+      color: #a78bfa;
+    }
+
+    .welcome p {
+      color: #aaa7bb;
+      line-height: 1.7;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .tool-card {
+      background: linear-gradient(145deg, #191827, #11111a);
+      border: 1px solid #302b45;
+      border-radius: 15px;
+      padding: 28px;
+      transition: 0.3s;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      border-color: #9270ff;
+    }
+
+    .tool-icon {
+      font-size: 30px;
+      margin-bottom: 18px;
+    }
+
+    .tool-card h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .tool-card p {
+      color: #aaa7bb;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .status {
+      display: inline-block;
+      background: #251c3a;
+      border: 1px solid #49376d;
+      color: #c4aaff;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .notice {
+      margin-top: 35px;
+      padding: 20px;
+      background: #151322;
+      border: 1px solid #302b45;
+      border-radius: 12px;
+      color: #aaa7bb;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media(max-width: 750px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        padding: 18px;
+      }
+
+      .logo {
+        margin-bottom: 15px;
+      }
+
+      .nav-label,
+      .sidebar-bottom {
+        display: none;
+      }
+
+      .sidebar nav {
+        display: flex;
+        overflow-x: auto;
+        gap: 5px;
+      }
+
+      .nav-link {
+        white-space: nowrap;
+        margin: 0;
+      }
+
+      .main {
+        padding: 25px 18px;
+      }
+
+      .topbar {
+        margin-bottom: 35px;
+      }
+    }
+
+    @media(max-width: 480px) {
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="logo">FACELESS <span>AI</span></div>
+
+      <div class="nav-label">WORKSPACE</div>
+
+      <nav>
+        <a href="app.html" class="nav-link active">⌂ Dashboard</a>
+        <a href="#script" class="nav-link">✍ Script Generator</a>
+        <a href="#voiceover" class="nav-link">♫ Voiceover</a>
+        <a href="#visuals" class="nav-link">▧ Visual Generator</a>
+        <a href="#video" class="nav-link">▶ Video Creator</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <a href="index.html">← Back to Website</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <div class="topbar">
+        <h2>Dashboard</h2>
+        <div class="profile">Guest Account</div>
+      </div>
+
+      <section class="welcome">
+        <h1>Welcome to <span>Faceless AI</span></h1>
+        <p>
+          Your creative workspace for planning and creating
+          faceless YouTube videos.
+        </p>
+      </section>
+
+      <h2 class="section-title">Your AI Tools</h2>
+
+      <div class="tools-grid">
+
+        <div class="tool-card" id="script">
+          <div class="tool-icon">✍️</div>
+          <h3>AI Script Generator</h3>
+          <p>
+            Create engaging YouTube scripts with AI assistance.
+            Choose topics, styles and video lengths.
+          </p>
+          <span class="status">Coming Soon</span>
+        </div>
+
+        <div class="tool-card" id="voiceover">
+          <div class="tool-icon">🎙️</div>
+          <h3>AI Voiceover</h3>
+          <p>
+            Turn your written scripts into natural-sounding
+            voice narration.
+          </p>
+          <span class="status">Coming Soon</span>
+        </div>
+
+        <div class="tool-card" id="visuals">
+          <div class="tool-icon">🖼️</div>
+          <h3>Visual Generator</h3>
+          <p>
+            Create visuals and find suitable images for your
+            faceless videos.
+          </p>
+          <span class="status">Coming Soon</span>
+        </div>
+
+        <div class="tool-card" id="video">
+          <div class="tool-icon">🎬</div>
+          <h3>Video Creator</h3>
+          <p>
+            Combine scripts, voiceovers and visuals into
+            a finished video.
+          </p>
+          <span class="status">Coming Soon</span>
+        </div>
+
+      </div>
+
+      <div class="notice">
+        <strong>Development Notice</strong><br>
+        Faceless AI is currently under development. The tools
+        shown above are planned features and are not yet functional.
+        Google Sign-In and user accounts will be added separately.
+        This dashboard currently operates in guest preview mode.
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
+
