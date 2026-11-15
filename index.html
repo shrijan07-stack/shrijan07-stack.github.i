@@ -2,126 +2,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shrijan Web | Official Website</title>
-<meta name="description" content="Official website for Shrijan Web and its Google authentication services.">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#0b1020;color:#f5f5f5;line-height:1.7}
-header{padding:22px 8%;display:flex;justify-content:space-between;align-items:center;background:#11182b;flex-wrap:wrap;gap:15px}
-.logo{font-size:23px;font-weight:bold;color:#8b9cff}
-nav a{color:#ddd;text-decoration:none;margin:0 10px;font-size:14px}
-nav a:hover{color:#8b9cff}
-.hero{text-align:center;padding:100px 20px 85px;background:linear-gradient(135deg,#11182b,#202b50)}
-.hero h1{font-size:46px;margin-bottom:15px}
-.hero p{color:#c5cbe0;max-width:650px;margin:auto}
-section{padding:65px 9%;max-width:1100px;margin:auto}
-section h2{font-size:29px;margin-bottom:18px;color:#9eacff}
-section p,section li{color:#cbd0df;margin-bottom:12px}
-section ul{padding-left:25px}
-.card{background:#151e34;padding:25px;border-radius:14px;margin-top:20px}
-footer{text-align:center;padding:28px;background:#11182b;color:#aab2c8}
-footer a{color:#9eacff;margin:0 10px;text-decoration:none}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Faceless YouTube Automation Tool - An AI-powered video creation project.">
+  <title>Faceless YouTube Automation Tool</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #09090f;
+      color: #f5f3ff;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #242333;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: bold;
+      color: #c4b5fd;
+    }
+
+    nav a {
+      color: #c4c0d5;
+      text-decoration: none;
+      margin-left: 22px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #a78bfa;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 110px 20px 90px;
+      background: radial-gradient(ellipse at top, #292044 0%, #09090f 65%);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 15px;
+      border: 1px solid #51417a;
+      border-radius: 30px;
+      color: #c4b5fd;
+      font-size: 12px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 65px);
+      line-height: 1.15;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    h1 span {
+      color: #a78bfa;
+    }
+
+    .hero p {
+      color: #aaa5bd;
+      max-width: 600px;
+      margin: 22px auto;
+      font-size: 16px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 13px 25px;
+      background: #8b5cf6;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #7c3aed;
+    }
+
+    section {
+      padding: 75px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .section-description {
+      text-align: center;
+      color: #aaa5bd;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .feature {
+      background: #13121d;
+      border: 1px solid #292638;
+      border-radius: 14px;
+      padding: 27px;
+    }
+
+    .feature .icon {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+      color: #ddd6fe;
+    }
+
+    .feature p {
+      color: #aaa5bd;
+      font-size: 14px;
+    }
+
+    .status {
+      display: inline-block;
+      color: #c4b5fd;
+      background: #251b3b;
+      padding: 4px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      margin-top: 15px;
+    }
+
+    .about {
+      background: #11101a;
+      text-align: center;
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: 20px auto;
+      color: #aaa5bd;
+    }
+
+    .notice {
+      max-width: 750px;
+      margin: 35px auto 0;
+      padding: 18px;
+      border: 1px solid #51417a;
+      border-radius: 12px;
+      color: #c4b5fd;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      border-top: 1px solid #242333;
+      color: #89849c;
+      font-size: 13px;
+    }
+
+    footer a {
+      color: #c4b5fd;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav a {
+        margin: 0 7px;
+      }
+
+      .hero {
+        padding-top: 75px;
+      }
+
+      section {
+        padding: 55px 6%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-<div class="logo">Shrijan Web</div>
-<nav>
-<a href="#home">Home</a>
-<a href="#privacy">Privacy Policy</a>
-<a href="#terms">Terms</a>
-<a href="#contact">Contact</a>
-</nav>
-</header>
+  <header>
+    <div class="logo">FACeless AI</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
 
-<div class="hero" id="home">
-<h1>Welcome to Shrijan Web</h1>
-<p>Our official website. We are building simple digital tools and services with a focus on privacy, security and user experience.</p>
-</div>
+  <main>
+    <section class="hero" id="home">
+      <div class="tag">AI VIDEO CREATION PROJECT</div>
 
-<section>
-<h2>About Us</h2>
-<div class="card">
-<p>Shrijan Web is an independent digital project. This website provides information about our services, policies and contact details.</p>
-</div>
-</section>
+      <h1>
+        Create Videos.<br>
+        <span>Without Showing Your Face.</span>
+      </h1>
 
-<section id="privacy">
-<h2>Privacy Policy</h2>
-<p><strong>Last updated: November 15, 2026</strong></p>
-<p>This Privacy Policy explains how Shrijan Web handles information when you use our website or connected application.</p>
+      <p>
+        A project focused on making faceless YouTube video
+        creation easier with the help of AI-powered tools.
+      </p>
 
-<h3>1. Information We Collect</h3>
-<p>We may receive information that you choose to provide, such as your email address when you contact us. If you use Google Sign-In, our application may receive basic account information permitted by the Google permissions you approve.</p>
+      <a href="#features" class="button">Explore Features</a>
+    </section>
 
-<h3>2. How We Use Information</h3>
-<p>Information is used only to provide and maintain the services, authenticate users, respond to requests and improve security.</p>
+    <section id="features">
+      <h2 class="section-title">Our Planned Features</h2>
+      <p class="section-description">
+        We are working towards a simple workflow for creating
+        faceless videos.
+      </p>
 
-<h3>3. Google User Data</h3>
-<p>Our use and transfer of information received from Google APIs will comply with the Google API Services User Data Policy, including its Limited Use requirements.</p>
-<p>We will only request the Google permissions needed for the features we provide. We do not sell Google user data.</p>
+      <div class="features">
 
-<h3>4. Data Sharing</h3>
-<p>We do not share personal information except when necessary to provide the service, comply with applicable law, or when you give permission.</p>
+        <div class="feature">
+          <div class="icon">✍️</div>
+          <h3>AI Script Generator</h3>
+          <p>
+            Generate video script drafts from your chosen topic.
+          </p>
+          <span class="status">Coming Soon</span>
+        </div>
 
-<h3>5. Data Security and Retention</h3>
-<p>We take reasonable measures to protect information. Information is retained only for as long as necessary for the purposes described in this policy or as required by law.</p>
+        <div class="feature">
+          <div class="icon">🎙️</div>
+          <h3>AI Voiceover</h3>
+          <p>
+            Turn written scripts into voiceovers using AI tools.
+          </p>
+          <span class="status">Coming Soon</span>
+        </div>
 
-<h3>6. Your Choices</h3>
-<p>You can stop using our services and revoke Google account access through your Google Account security settings.</p>
+        <div class="feature">
+          <div class="icon">🖼️</div>
+          <h3>Visual Generator</h3>
+          <p>
+            Help create or find visuals for your video projects.
+          </p>
+          <span class="status">Coming Soon</span>
+        </div>
 
-<h3>7. Contact</h3>
-<p>For privacy questions, contact us using the email address listed below.</p>
-</section>
+        <div class="feature">
+          <div class="icon">🎬</div>
+          <h3>Video Creator</h3>
+          <p>
+            Bring scripts, voiceovers and visuals together
+            into a final video.
+          </p>
+          <span class="status">Coming Soon</span>
+        </div>
 
-<section id="terms">
-<h2>Terms of Service</h2>
-<p><strong>Last updated: November 15, 2026</strong></p>
+      </div>
+    </section>
 
-<h3>1. Acceptance</h3>
-<p>By accessing or using Shrijan Web, you agree to these Terms of Service.</p>
+    <section class="about" id="about">
+      <h2 class="section-title">About This Project</h2>
 
-<h3>2. Use of Services</h3>
-<p>You agree to use our website and services lawfully and responsibly. You must not misuse, disrupt or attempt to gain unauthorized access to our services.</p>
+      <p>
+        Faceless YouTube Automation Tool is a project
+        in development. Our goal is to make the video
+        creation process easier through AI-assisted tools.
+      </p>
 
-<h3>3. Google Authentication</h3>
-<p>Some features may use Google Sign-In. Your use of Google services is also subject to Google's applicable terms and policies.</p>
+      <div class="notice">
+        This website currently provides project information.
+        The planned video creation features are not yet available.
+        No automatic YouTube uploading is offered at this stage.
+      </div>
+    </section>
+  </main>
 
-<h3>4. Availability</h3>
-<p>We may update, change or temporarily suspend features to maintain or improve our services.</p>
-
-<h3>5. Limitation</h3>
-<p>Our services are provided on an as-available basis, subject to applicable law.</p>
-
-<h3>6. Changes</h3>
-<p>We may update these terms from time to time. Updated terms will be published on this page.</p>
-
-<h3>7. Contact</h3>
-<p>For questions about these terms, contact us using the email address below.</p>
-</section>
-
-<section id="contact">
-<h2>Contact Us</h2>
-<div class="card">
-<p>For questions, support or privacy requests, contact:</p>
-<p><strong>Email:</strong> YOUR_EMAIL_ADDRESS</p>
-<p>We will respond to requests as reasonably possible.</p>
-</div>
-</section>
-
-<footer>
-<p>© 2026 Shrijan Web. All rights reserved.</p>
-<p>
-<a href="#home">Home</a>
-<a href="#privacy">Privacy Policy</a>
-<a href="#terms">Terms of Service</a>
-<a href="#contact">Contact</a>
-</p>
-</footer>
+  <footer>
+    <p>© 2026 Faceless YouTube Automation Tool</p>
+    <p>Project in Development</p>
+  </footer>
 
 </body>
 </html>
-
