@@ -21,12 +21,13 @@ input,textarea,select{width:100%;padding:14px;background:#0c0c15;border:1px soli
 input:focus,textarea:focus,select:focus{border-color:#a78bfa}
 textarea{min-height:110px;resize:vertical;line-height:1.5}
 .options{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-button{background:#a78bfa;color:#100c1c;padding:14px 22px;border:0;border-radius:8px;font-weight:bold;font-size:14px;margin-top:25px}
+button{background:#a78bfa;color:#100c1c;padding:14px 22px;border:0;border-radius:8px;font-weight:bold;font-size:14px;margin-top:25px;cursor:pointer}
 button:hover{background:#c4b5fd}
 .note{margin-top:20px;padding:15px;background:#201a30;border-radius:8px;color:#c4b5fd;font-size:13px;line-height:1.6}
 .output{margin-top:25px;display:none}
 .output h2{font-size:20px;margin-bottom:12px}
-#result{white-space:pre-wrap;line-height:1.7;color:#ddd6fe}
+#result{white-space:pre-wrap;line-height:1.8;color:#ddd6fe}
+.copy{margin-top:15px}
 @media(max-width:600px){.options{grid-template-columns:1fr}h1{font-size:27px}main{margin:35px auto}}
 </style>
 </head>
@@ -94,41 +95,132 @@ button:hover{background:#c4b5fd}
     <input id="audience" type="text" placeholder="Example: Teenagers and young adults">
 
     <div class="note">
-      Your script settings are ready. The secure AI generation connection will be added next.
+      Demo Mode: This version creates a basic script template in your browser. It does not use an external AI service yet.
     </div>
 
-    <button type="button" id="generate">Prepare Script Request</button>
+    <button type="button" id="generate">Generate Demo Script</button>
 
     <div class="output" id="output">
-      <h2>Your Script Settings</h2>
+      <h2>Your Generated Script</h2>
       <p id="result"></p>
+      <button type="button" class="copy" id="copy">Copy Script</button>
     </div>
   </section>
 </main>
 
 <script>
-document.getElementById("generate").addEventListener("click", function(){
-  const topic = document.getElementById("topic").value.trim();
+const $ = id => document.getElementById(id);
 
-  if(!topic){
+function generateScript() {
+  const topic = $("topic").value.trim();
+  if (!topic) {
     alert("Please enter your video topic first.");
     return;
   }
 
-  const settings = [
-    "Topic: " + topic,
-    "Platform: " + document.getElementById("platform").value,
-    "Language: " + document.getElementById("language").value,
-    "Duration: " + document.getElementById("duration").value,
-    "Style: " + document.getElementById("style").value,
-    "Audience: " + (document.getElementById("audience").value || "General audience")
-  ];
+  const language = $("language").value;
+  const style = $("style").value;
+  const duration = $("duration").value;
+  const audience = $("audience").value.trim() || "General audience";
+  const platform = $("platform").value;
 
-  document.getElementById("result").textContent = settings.join("\n");
-  document.getElementById("output").style.display = "block";
+  let script;
+
+  if (language === "Hindi") {
+    script = `विषय: ${topic}
+
+HOOK:
+क्या आपने कभी सोचा है कि ${topic} आपकी जिंदगी को कैसे प्रभावित कर सकता है? आज हम इसी के बारे में जानेंगे।
+
+INTRODUCTION:
+नमस्कार! आज की इस वीडियो में हम ${topic} को आसान भाषा में समझेंगे। यह जानकारी ${audience} के लिए उपयोगी हो सकती है।
+
+मुख्य भाग:
+
+1. सबसे पहले, इस विषय को समझना जरूरी है।
+${topic} के बारे में सही जानकारी होना पहला कदम है।
+
+2. दूसरा महत्वपूर्ण पहलू है लगातार सीखना।
+छोटे-छोटे कदम और सही आदतें समय के साथ बड़ा बदलाव ला सकती हैं।
+
+3. तीसरा पहलू है अपनी प्रगति को समझना।
+जो काम कर रहा है उसे जारी रखें और जरूरत पड़ने पर अपनी रणनीति बदलें।
+
+OUTRO:
+तो ये थीं ${topic} से जुड़ी कुछ महत्वपूर्ण बातें। अगर आपको यह वीडियो उपयोगी लगी, तो चैनल को सब्सक्राइब करें और अगली वीडियो में मिलते हैं।`;
+  } else if (language === "Hinglish") {
+    script = `TOPIC: ${topic}
+
+HOOK:
+Kya aapne kabhi socha hai ki ${topic} aapki life ko kaise affect kar sakta hai? Aaj hum isi ko simple way mein samjhenge.
+
+INTRO:
+Welcome back! Aaj ki video mein hum ${topic} ke important points cover karenge. Ye video ${audience} ke liye hai.
+
+MAIN CONTENT:
+
+1. Sabse pehle, topic ko samajhna zaroori hai.
+${topic} ke baare mein correct information hona first step hai.
+
+2. Second, consistency important hai.
+Chhote steps aur right habits time ke saath difference create kar sakte hain.
+
+3. Finally, apni progress ko track karo.
+Jo work kar raha hai use continue rakho aur zaroorat ke hisaab se improve karo.
+
+OUTRO:
+Agar aapko ye video helpful lagi, toh channel ko subscribe karo. Milte hain next video mein!`;
+  } else {
+    script = `TOPIC: ${topic}
+
+HOOK:
+What if one simple idea could change the way you think about ${topic}? Stay until the end to understand why it matters.
+
+INTRODUCTION:
+Welcome back! In this video, we're exploring ${topic}. This video is designed for ${audience}.
+
+MAIN CONTENT:
+
+1. UNDERSTAND THE BASICS
+Before taking action, understand what ${topic} actually means and why it matters.
+
+2. FOCUS ON WHAT MATTERS
+Avoid unnecessary distractions. Focus on useful information and practical steps related to ${topic}.
+
+3. TAKE CONSISTENT ACTION
+Small, consistent improvements can help you make progress over time. Learn from your experience and adjust your approach.
+
+OUTRO:
+Now you have a starting point to understand ${topic}. If you found this video useful, subscribe for more videos. See you in the next one!`;
+  }
+
+  const details = `PLATFORM: ${platform}
+DURATION: ${duration}
+STYLE: ${style}
+LANGUAGE: ${language}
+AUDIENCE: ${audience}
+
+--------------------------------
+
+`;
+
+  $("result").textContent = details + script;
+  $("output").style.display = "block";
+  $("output").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+$("generate").addEventListener("click", generateScript);
+
+$("copy").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText($("result").textContent);
+    $("copy").textContent = "Copied!";
+    setTimeout(() => $("copy").textContent = "Copy Script", 1800);
+  } catch {
+    alert("Copy was unavailable. Please select and copy the script manually.");
+  }
 });
 </script>
 
 </body>
 </html>
-
